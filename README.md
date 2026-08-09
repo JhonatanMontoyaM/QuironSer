@@ -31,3 +31,4 @@ npm run preview
 - Personaje: `public/images/quiron-character.png`
 
 El formulario es visual/demostrativo. Para recibir solicitudes reales, conecta `handleSubmit` con Formspree, EmailJS, Supabase o tu propia API.
+# QuironSer--Main

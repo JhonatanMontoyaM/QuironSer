@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useForm } from '@formspree/react';
 
 const services = [
   {
@@ -60,8 +61,15 @@ function Icon({ name }) {
 }
 
 function App() {
+  // const [menuOpen, setMenuOpen] = useState(false);
+  // const [submitted, setSubmitted] = useState(false);
+
+  //Nuevos cambios para mejorar el form
   const [menuOpen, setMenuOpen] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+
+  //uso general del form
+  const [state, handleSubmit] = useForm('meajaknv');
+
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -73,11 +81,11 @@ function App() {
 
   const closeMenu = () => setMenuOpen(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setSubmitted(true);
-    event.currentTarget.reset();
-  };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   setSubmitted(true);
+  //   event.currentTarget.reset();
+  // };
 
   return (
     <div className="site-shell">
@@ -248,10 +256,20 @@ function App() {
                 <span>Mensaje</span>
                 <textarea name="message" rows="3" placeholder="Cuéntanos brevemente..." required />
               </label>
-              <button className="button button--gold" type="submit">Enviar solicitud <Icon name="arrow" /></button>
-              {submitted && (
+              <button className="button button--gold"
+              type="submit"
+              disabled={state.submitting}>
+                {state.submitting ? 'Enviando...' : 'Enviar solicitud'}
+                {!state.submitting && <Icon name="arrow"/>}
+                </button>
+              {state.succeeded && (
                 <p className="form-success" role="status">
-                  <Icon name="check" /> Tu solicitud fue registrada en esta demo.
+                  <Icon name="check" /> ¡Gracias! Hemos recibido tu solicitud y te responderemos pronto.
+                </p>
+              )}
+              {state.errors && (
+                <p className="form-error" role="alert">
+                  No pudimos enviar el formulario. Inténtalo nuevamente.
                 </p>
               )}
               <p className="form-note">Este formulario es demostrativo. Conéctalo a tu correo, CRM o API para recibir mensajes reales.</p>

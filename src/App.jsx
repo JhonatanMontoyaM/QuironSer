@@ -9,8 +9,8 @@ const services = [
   },
   {
     number: '02',
-    title: 'Saberes tradicionales',
-    text: 'Prácticas de bienestar inspiradas en plantas, rituales cotidianos y recursos culturales de autocuidado.',
+    title: 'Saberes que se integran',
+    text: 'Estarás en contacto con la Homeopatía y la Medicina Unani, dos tradiciones que se integran para acompañar tu bienestar físico, mental, emocional y evolutivo, respaldadas por una amplia trayectoria histórica.',
   },
   {
     number: '03',
